@@ -50,3 +50,36 @@ class Playlist:
                 return current
             current = current.next
         return None
+    
+    def delete(self, title):
+
+        node = self.search(title)
+
+        if node is None:
+            return False
+
+        if self.head == self.tail:
+
+            self.head = None
+            self.tail = None
+            self.current = None
+
+        elif node == self.head:
+
+            self.head = node.next
+            self.head.prev = None
+
+        elif node == self.tail:
+
+            self.tail = node.prev
+            self.tail.next = None
+
+        else:
+
+            node.prev.next = node.next
+            node.next.prev = node.prev
+
+        if self.current == node:
+            self.current = self.head
+
+        return True
