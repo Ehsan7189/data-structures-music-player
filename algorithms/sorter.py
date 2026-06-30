@@ -18,5 +18,6 @@ class Sorter:
         return {
             "algorithm": self.algorithm_name,
             "time": end_time - start_time,
-            "memory": peak
+            "memory": peak,
+            "sorted_by": key
         }
