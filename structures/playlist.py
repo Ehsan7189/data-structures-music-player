@@ -83,3 +83,10 @@ class Playlist:
             self.current = self.head
 
         return True
+    
+    def current_song(self):
+        if self.current is None:
+            print("Playlist is empty.")
+            return
+        print(self.current.song)
+        
