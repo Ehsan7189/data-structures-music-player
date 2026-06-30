@@ -42,3 +42,11 @@ class Playlist:
             print("-" * 30)
 
             current = current.next
+
+    def search(self, title):
+        current = self.head
+        while current is not None:
+            if current.song.title == title:
+                return current
+            current = current.next
+        return None
