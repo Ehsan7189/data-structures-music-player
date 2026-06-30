@@ -1,7 +1,7 @@
-from models.song import Song
-from models.node import Node
+from structures.playlist import Playlist
 
-song = Song("music/Eminem - Mockingbird.mp3")
-node = Node(song)
+playlist = Playlist()
 
-print(node.song)
+print(playlist.head)
+print(playlist.tail)
+print(playlist.current)
