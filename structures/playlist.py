@@ -88,5 +88,4 @@ class Playlist:
         if self.current is None:
             print("Playlist is empty.")
             return
-        print(self.current.song)
-        
+        return self.current.song
