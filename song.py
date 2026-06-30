@@ -26,3 +26,11 @@ class Song:
         else:
             self.artist = "Unknown"
             self.title = file_name
+
+        def __str__(self):
+
+            return (
+                f"Artist : {self.artist}\n"
+                f"Title  : {self.title}\n"
+                f"Format : {self.extension}"
+            )
