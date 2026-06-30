@@ -19,3 +19,10 @@ class Song:
 
       
         parts = file_name.split(" - ")
+
+        if len(parts) == 2:
+            self.artist = parts[0]
+            self.title = parts[1]
+        else:
+            self.artist = "Unknown"
+            self.title = file_name
