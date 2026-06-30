@@ -1,15 +1,16 @@
-from models.song import Song
 from structures.playlist import Playlist
+from models.song import Song
 
 playlist = Playlist()
 
 playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
 playlist.add_last(Song("music/Adele - Hello.mp3"))
-playlist.add_first(Song("music/Linkin Park - Numb.mp3"))
+playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 
-result = playlist.search("Mockingbird")
+print("=== قبل از حذف ===")
+playlist.display()
 
-if result:
-    print(result.song)
-else:
-    print("Song not found.")
+playlist.delete("Hello")
+
+print("\n=== بعد از حذف ===")
+playlist.display()
