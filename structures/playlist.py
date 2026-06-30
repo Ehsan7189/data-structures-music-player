@@ -93,7 +93,8 @@ class Playlist:
     def next_song(self):
         if self.current is None:
             return None 
-        elif self.current.next is not None:
+        
+        if self.current.next is not None:
             self.current = self.current.next
 
         else:
@@ -101,13 +102,14 @@ class Playlist:
             self.current = self.head
         return self.current.song
     
-    def next_song(self):
+    def previous_song(self):
         if self.current is None:
             return None 
-        elif self.current.next is not None:
-            self.current = self.current.next
+        
+        if self.current.prev is not None:
+            self.current = self.current.prev
 
         else:
 
-            self.current = self.head
+            self.current = self.tail
         return self.current.song
