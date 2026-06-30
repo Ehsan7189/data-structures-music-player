@@ -100,3 +100,14 @@ class Playlist:
 
             self.current = self.head
         return self.current.song
+    
+    def next_song(self):
+        if self.current is None:
+            return None 
+        elif self.current.next is not None:
+            self.current = self.current.next
+
+        else:
+
+            self.current = self.head
+        return self.current.song
