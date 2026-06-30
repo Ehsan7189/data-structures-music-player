@@ -7,4 +7,9 @@ playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
 playlist.add_last(Song("music/Adele - Hello.mp3"))
 playlist.add_first(Song("music/Linkin Park - Numb.mp3"))
 
-playlist.display()
+result = playlist.search("Mockingbird")
+
+if result:
+    print(result.song)
+else:
+    print("Song not found.")
