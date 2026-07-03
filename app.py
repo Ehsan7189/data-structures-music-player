@@ -20,6 +20,7 @@ bubble = BubbleSort()
 
 # مرتب سازی بر اساس نام آهنگ
 result = bubble.measure(playlist, "artist")
+bubble.trace = True
 
 print("\n========== After Sort ==========")
 playlist.display()
