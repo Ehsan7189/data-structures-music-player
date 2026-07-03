@@ -1,23 +1,31 @@
-from structures.playlist import Playlist
 from models.song import Song
+from structures.playlist import Playlist
+from algorithms.bubble_sort import BubbleSort
 
+
+# ساخت پلی لیست
 playlist = Playlist()
 
-playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
-playlist.add_last(Song("music/Adele - Hello.mp3"))
+# اضافه کردن آهنگ ها (عمداً نامرتب)
 playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
+playlist.add_last(Song("music/Adele - Hello.mp3"))
+playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
+playlist.add_last(Song("music/Coldplay - Yellow.mp3"))
 
-print("آهنگ فعلی:")
-print(playlist.current_song())
+print("========== Before Sort ==========")
+playlist.display()
 
-print("\nبعد از next:")
-print(playlist.next_song())
+# ساخت الگوریتم Bubble Sort
+bubble = BubbleSort()
 
-print("\nبعد از next:")
-print(playlist.next_song())
+# مرتب سازی بر اساس نام آهنگ
+result = bubble.measure(playlist, "artist")
 
-print("\nبعد از next:")
-print(playlist.next_song())
+print("\n========== After Sort ==========")
+playlist.display()
 
-print("\nبعد از next:")
-print(playlist.next_song())
+print("\n========== Performance ==========")
+print(f"Algorithm : {result['algorithm']}")
+print(f"Sorted By : {result['sorted_by']}")
+print(f"Time      : {result['time']:.8f} sec")
+print(f"Memory    : {result['memory']} Bytes")
