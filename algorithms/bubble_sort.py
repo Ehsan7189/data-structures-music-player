@@ -21,11 +21,14 @@ class BubbleSort(Sorter):
 
                 if self.compare(current, current.next, key) > 0:
 
+                    left = getattr(current.song, key)
+                    right = getattr(current.next.song, key)
+
                     self.swap(current, current.next)
 
                     self.show_step(
                         playlist,
-                        f"Compare : {current.song.artist} ↔ {current.next.song.artist}\nResult  : Swap"
+                        f"Compare : {left} ↔ {right}\nResult  : Swap"
                     )
 
                     swapped = True
