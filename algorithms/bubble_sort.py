@@ -23,7 +23,10 @@ class BubbleSort(Sorter):
 
                     self.swap(current, current.next)
 
-                    self.show_step(playlist, "Swap")
+                    self.show_step(
+                        playlist,
+                        f"Compare : {current.song.artist} ↔ {current.next.song.artist}\nResult  : Swap"
+                    )
 
                     swapped = True
 
