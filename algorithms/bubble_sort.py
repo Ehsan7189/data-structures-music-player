@@ -17,10 +17,7 @@ class BubbleSort(Sorter):
 
             while current.next != last_sorted:
 
-                left = getattr(current.song, key).lower()
-                right = getattr(current.next.song, key).lower()
-
-                if left > right:
+                if self.compare(current, current.next, key) > 0:
 
                     current.song, current.next.song = (
                         current.next.song,
