@@ -9,6 +9,8 @@ class Sorter:
     def __init__(self,algorithm_name):
 
         self.algorithm_name = algorithm_name
+        self.trace = False
+        self.step = 1
 
     def measure(self, playlist, key):
         start_time = time.perf_counter()
