@@ -6,6 +6,8 @@ class BubbleSort(Sorter):
     def __init__(self):
 
         super().__init__("Bubble Sort")
+
+        print(self.__dict__)
     def sort(self, playlist, key):
         if playlist.head is None or playlist.head.next is None: 
             return
