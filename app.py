@@ -18,9 +18,10 @@ playlist.display()
 # ساخت الگوریتم Bubble Sort
 bubble = BubbleSort()
 
+bubble.trace = True
+
 # مرتب سازی بر اساس نام آهنگ
 result = bubble.measure(playlist, "artist")
-bubble.trace = True
 
 print("\n========== After Sort ==========")
 playlist.display()
