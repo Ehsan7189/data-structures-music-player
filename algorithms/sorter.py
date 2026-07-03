@@ -37,6 +37,7 @@ class Sorter:
             return -1
         else:
             return 0
+    
     def swap(self, node1, node2):
 
         node1.song, node2.song = node2.song, node1.song    
@@ -49,7 +50,11 @@ class Sorter:
         if playlist.size > 10:
             return
 
-        print(f"\nStep {self.step} : {message}")
+        print("\n" + "=" * 50)
+        print(f"Step {self.step}")
+        print(message)
+        print("=" * 50)
+        
         playlist.display()
 
         self.step += 1
