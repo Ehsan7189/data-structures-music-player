@@ -21,3 +21,15 @@ class Sorter:
             "memory": peak,
             "sorted_by": key
         }
+
+    def compare(self, node1, node2, key):
+
+        left = getattr(node1.song, key).lower()
+        right = getattr(node2.song, key).lower()
+
+        if left > right:
+            return 1
+        elif left < right:
+            return -1
+        else:
+            return 0
