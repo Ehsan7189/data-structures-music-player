@@ -33,3 +33,6 @@ class Sorter:
             return -1
         else:
             return 0
+    def swap(self, node1, node2):
+
+        node1.song, node2.song = node2.song, node1.song    
