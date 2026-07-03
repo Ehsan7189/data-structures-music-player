@@ -10,6 +10,7 @@ class BubbleSort(Sorter):
         if playlist.head is None or playlist.head.next is None: 
             return
         swapped = True
+        last_sorted = None
         while swapped:
             swapped = False
             current = playlist.head
