@@ -13,6 +13,7 @@ class BubbleSort(Sorter):
         while swapped:
             swapped = False
             current = playlist.head
+
             while current.next != last_sorted:
 
                 left = getattr(current.song, key).lower()
