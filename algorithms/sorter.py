@@ -4,6 +4,8 @@ import tracemalloc
 
 class Sorter:
 
+    
+
     def __init__(self,algorithm_name):
 
         self.algorithm_name = algorithm_name
@@ -36,3 +38,16 @@ class Sorter:
     def swap(self, node1, node2):
 
         node1.song, node2.song = node2.song, node1.song    
+
+    def show_step(self, playlist, message):
+
+        if not self.trace:
+            return
+
+        if playlist.size > 10:
+            return
+
+        print(f"\nStep {self.step} : {message}")
+        playlist.display()
+
+        self.step += 1
