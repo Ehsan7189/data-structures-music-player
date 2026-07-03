@@ -21,6 +21,8 @@ class BubbleSort(Sorter):
 
                     self.swap(current, current.next)
 
+                    self.show_step(playlist, "Swap")
+
                     swapped = True
 
                 current = current.next
