@@ -19,10 +19,7 @@ class BubbleSort(Sorter):
 
                 if self.compare(current, current.next, key) > 0:
 
-                    current.song, current.next.song = (
-                        current.next.song,
-                        current.song,
-                    )
+                    self.swap(current, current.next)
 
                     swapped = True
 
