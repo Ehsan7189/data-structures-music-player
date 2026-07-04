@@ -13,6 +13,7 @@ class InsertionSort(Sorter):
         current = playlist.head.next
         while current:
             temp = current.song
+            next_node = current.next
             position = current.prev
 
             while position and self.compare(position, temp, key) > 0:
@@ -28,5 +29,5 @@ class InsertionSort(Sorter):
 
             position.next.song = temp
 
-        current = current.next
+        current = next_node
 
