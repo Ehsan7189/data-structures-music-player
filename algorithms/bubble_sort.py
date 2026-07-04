@@ -14,7 +14,6 @@ class BubbleSort(Sorter):
         swapped = True
         last_sorted = None
 
-        result = self.compare(current, current.next, key)
 
         while swapped:
             swapped = False
@@ -22,12 +21,14 @@ class BubbleSort(Sorter):
 
             while current.next != last_sorted:
 
-                if result > 0:
+                if self.compare(current, current.next, key) > 0:
 
                     left = getattr(current.song, key)
                     right = getattr(current.next.song, key)
 
-                    if result > 0:
+                    compare_result = self.compare(current, current.next, key)
+
+                    if compare_result > 0:
                         self.swap(current, current.next)
 
                         self.show_step(
