@@ -52,9 +52,7 @@ class Sorter:
 
         print("\n" + "=" * 50)
         print(f"Step {self.step}")
-        print(f"Compare {key.capitalize()} :")
-        print(f"    {left} ↔ {right}")
-        print(f"Result : {result}")
+        print(message)
         print("=" * 50)
 
         playlist.display()

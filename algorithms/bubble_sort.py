@@ -33,10 +33,9 @@ class BubbleSort(Sorter):
 
                     self.show_step(
                         playlist,
-                        key,
-                        left,
-                        right,
-                        "Swap"
+                        f"Compare {key.capitalize()}:\n"
+                        f"    {left} ↔ {right}\n"
+                        f"Result : 🔄 Swap"
                     )
 
                     swapped = True
@@ -45,12 +44,10 @@ class BubbleSort(Sorter):
 
                     self.show_step(
                         playlist,
-                        key,
-                        left,
-                        right,
-                        "No Swap"
+                        f"Compare {key.capitalize()}:\n"
+                        f"    {left} ↔ {right}\n"
+                        f"Result : ✅ No Swap"
                     )
-
                 current = current.next
 
             last_sorted = current
