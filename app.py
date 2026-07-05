@@ -1,12 +1,9 @@
 from models.song import Song
 from structures.playlist import Playlist
-from algorithms.insertion_sort import InsertionSort
+from algorithms.merge_sort import MergeSort
 
-
-# ساخت پلی لیست
 playlist = Playlist()
 
-# اضافه کردن آهنگ ها (عمداً نامرتب)
 playlist.add_last(Song("music/Metallica - One.mp3"))
 playlist.add_last(Song("music/Adele - Hello.mp3"))
 playlist.add_last(Song("music/Coldplay - Yellow.mp3"))
@@ -19,13 +16,9 @@ playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 print("========== Before Sort ==========")
 playlist.display()
 
-# ساخت الگوریتم Bubble Sort
-insertion = InsertionSort()
+merge = MergeSort()
 
-insertion.trace = True
-
-# مرتب سازی بر اساس نام آهنگ
-result = insertion.measure(playlist, "artist")
+result = merge.measure(playlist, "artist")
 
 print("\n========== After Sort ==========")
 playlist.display()
