@@ -26,7 +26,6 @@ class MergeSort(Sorter):
 
         return slow
     
-    
     def merge_sort(self, head, key):
 
         if head is None or head.next is None:
@@ -47,7 +46,6 @@ class MergeSort(Sorter):
 
         return self.merge(left, right, key)
     
-
     def merge(self, left, right, key):
 
 
