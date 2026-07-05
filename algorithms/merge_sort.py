@@ -12,3 +12,15 @@ class MergeSort(Sorter):
             return
 
         playlist.head = self.merge_sort(playlist.head, key)
+
+    def get_middle(self, head):
+
+        slow = head
+        fast = head
+
+        while fast.next and fast.next.next:
+
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
