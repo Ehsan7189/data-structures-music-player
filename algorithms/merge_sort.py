@@ -47,3 +47,23 @@ class MergeSort(Sorter):
 
                 tail = right
                 right = right.next
+                
+    def merge_sort(self, head, key):
+
+        if head is None or head.next is None:
+            return head
+
+        middle = self.get_middle(head)
+
+        right = middle.next
+        middle.next = None
+
+        if right:
+            right.prev = None
+
+        left = head
+
+        left = self.merge_sort(left, key)
+        right = self.merge_sort(right, key)
+
+        return self.merge(left, right, key)
