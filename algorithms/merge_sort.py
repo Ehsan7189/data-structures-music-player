@@ -1,4 +1,5 @@
 from algorithms.sorter import Sorter
+from models.node import Node
 
 
 class MergeSort(Sorter):
@@ -24,3 +25,25 @@ class MergeSort(Sorter):
             fast = fast.next.next
 
         return slow
+    
+    def merge(self, left, right, key):
+
+        dummy = Node(None)
+        tail = dummy
+        
+        while left and right:
+            
+            if self.compare(left, right, key) <= 0:
+                
+                tail.next = left
+                left.prev = tail
+
+                tail = left
+                left = left.next
+
+            else:
+                tail.next = right
+                right.prev = tail
+
+                tail = right
+                right = right.next
