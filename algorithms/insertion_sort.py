@@ -29,4 +29,12 @@ class InsertionSort(Sorter):
             else:
                 position.next.song = temp
 
+
+            self.show_step(
+            playlist,
+            f"Insert:\n"
+            f"    {self.get_value(temp, key)} inserted"
+        )
+
+
             current = next_node
