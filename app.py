@@ -1,6 +1,6 @@
 from models.song import Song
 from structures.playlist import Playlist
-from algorithms.bubble_sort import BubbleSort
+from algorithms.insertion_sort import InsertionSort
 
 
 # ساخت پلی لیست
@@ -16,12 +16,12 @@ print("========== Before Sort ==========")
 playlist.display()
 
 # ساخت الگوریتم Bubble Sort
-bubble = BubbleSort()
+insertion = InsertionSort()
 
-bubble.trace = True
+insertion.trace = True
 
 # مرتب سازی بر اساس نام آهنگ
-result = bubble.measure(playlist, "artist")
+result = insertion.measure(playlist, "artist")
 
 print("\n========== After Sort ==========")
 playlist.display()
