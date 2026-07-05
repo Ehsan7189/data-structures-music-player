@@ -26,6 +26,15 @@ class Sorter:
             "sorted_by": key
         }
 
+    def get_value(self, item, key):
+
+        if hasattr(item, "song"):
+            value = getattr(item.song, key)
+        else:
+            value = getattr(item, key)
+
+        return value.lower()
+
     def compare(self, node1, node2, key):
 
         left = getattr(node1.song, key).lower()
