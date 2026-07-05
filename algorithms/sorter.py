@@ -37,9 +37,10 @@ class Sorter:
 
     def compare(self, node1, node2, key):
 
-        left = getattr(node1.song, key).lower()
-        right = getattr(node2.song, key).lower()
+        left = self.get_value(node1, key)
+        right = self.get_value(node2, key)
 
+        
         if left > right:
             return 1
         elif left < right:
