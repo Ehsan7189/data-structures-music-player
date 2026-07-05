@@ -26,28 +26,7 @@ class MergeSort(Sorter):
 
         return slow
     
-    def merge(self, left, right, key):
-
-        dummy = Node(None)
-        tail = dummy
-        
-        while left and right:
-            
-            if self.compare(left, right, key) <= 0:
-                
-                tail.next = left
-                left.prev = tail
-
-                tail = left
-                left = left.next
-
-            else:
-                tail.next = right
-                right.prev = tail
-
-                tail = right
-                right = right.next
-                
+    
     def merge_sort(self, head, key):
 
         if head is None or head.next is None:
@@ -67,3 +46,43 @@ class MergeSort(Sorter):
         right = self.merge_sort(right, key)
 
         return self.merge(left, right, key)
+    
+
+    def merge(self, left, right, key):
+
+
+        dummy = Node(None)
+        tail = dummy
+
+        while left and right:
+
+            if self.compare(left, right, key) <= 0:
+
+                tail.next = left
+                left.prev = tail
+
+                tail = left
+                left = left.next
+
+            else:
+
+                tail.next = right
+                right.prev = tail
+
+                tail = right
+                right = right.next
+
+        if left:
+            tail.next = left
+            left.prev = tail
+
+        elif right:
+            tail.next = right
+            right.prev = tail
+
+        head = dummy.next
+
+        if head:
+            head.prev = None
+
+        return head
