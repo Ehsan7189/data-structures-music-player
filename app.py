@@ -7,10 +7,14 @@ from algorithms.insertion_sort import InsertionSort
 playlist = Playlist()
 
 # اضافه کردن آهنگ ها (عمداً نامرتب)
-playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
+playlist.add_last(Song("music/Metallica - One.mp3"))
 playlist.add_last(Song("music/Adele - Hello.mp3"))
-playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
 playlist.add_last(Song("music/Coldplay - Yellow.mp3"))
+playlist.add_last(Song("music/Beatles - Hey Jude.mp3"))
+playlist.add_last(Song("music/Queen - Bohemian Rhapsody.mp3"))
+playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
+playlist.add_last(Song("music/ABBA - Dancing Queen.mp3"))
+playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 
 print("========== Before Sort ==========")
 playlist.display()
