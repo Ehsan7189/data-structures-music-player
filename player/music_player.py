@@ -125,5 +125,19 @@ class Player:
 
             print("➡ Shuffle Off")
 
+    def build_shuffle_order(self):
 
+        self.shuffle_order = []
+
+        current = self.playlist.head
+
+        while current is not None:
+
+            self.shuffle_order.append(current)
+
+            current = current.next
+
+        random.shuffle(self.shuffle_order)
+
+        self.shuffle_index = 0
 
