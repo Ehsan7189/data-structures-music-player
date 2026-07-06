@@ -42,3 +42,19 @@ class Player:
         self.state = "Paused"
 
         print("⏸ Paused")
+
+    def stop(self):
+
+        if self.playlist.head is None:
+            return
+
+        if self.state == "Stopped":
+            return
+
+        self.state = "Stopped"
+
+        self.playlist.current = self.playlist.head
+
+        print("\n⏹ Stopped")
+
+    
