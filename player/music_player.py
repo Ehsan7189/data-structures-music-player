@@ -57,7 +57,7 @@ class Player:
 
         print("\n⏹ Stopped")
 
-    def next_song(self):
+    def next(self):
 
         if self.playlist.head is None:
             return
@@ -70,7 +70,7 @@ class Player:
         print("\n⏭ Next Song")
         print(song)
 
-    def prev_song(self):
+    def previous(self):
 
         if self.playlist.head is None:
             return
