@@ -57,4 +57,15 @@ class Player:
 
         print("\n⏹ Stopped")
 
-    
+    def next_song(self):
+
+        if self.playlist.head is None:
+            return
+
+        if self.state == "Stopped":
+            return
+
+        song = self.playlist.next_song()
+
+        print("\n⏭ Next Song")
+        print(song)
