@@ -25,7 +25,9 @@ class Sorter:
             "algorithm": self.algorithm_name,
             "time": end_time - start_time,
             "memory": peak,
-            "sorted_by": key
+            "sorted_by": key,
+            "comparisons": self.comparisons,
+            "movements": self.movements
         }
 
     def get_value(self, item, key):
