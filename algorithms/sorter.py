@@ -39,6 +39,8 @@ class Sorter:
 
     def compare(self, node1, node2, key):
 
+        self.comparisons += 1
+
         left = self.get_value(node1, key)
         right = self.get_value(node2, key)
 
