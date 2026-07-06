@@ -1,6 +1,7 @@
 from models.song import Song
 from structures.playlist import Playlist
 from algorithms.merge_sort import MergeSort
+from player.music_player import Player
 
 playlist = Playlist()
 
@@ -13,18 +14,22 @@ playlist.add_last(Song("music/Eminem - Mockingbird.mp3"))
 playlist.add_last(Song("music/ABBA - Dancing Queen.mp3"))
 playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 
-print("========== Before Sort ==========")
-playlist.display()
+# print("========== Before Sort ==========")
+# playlist.display()
 
-merge = MergeSort()
+# merge = MergeSort()
 
-result = merge.measure(playlist, "artist")
+# result = merge.measure(playlist, "artist")
 
-print("\n========== After Sort ==========")
-playlist.display()
+# print("\n========== After Sort ==========")
+# playlist.display()
 
-print("\n========== Performance ==========")
-print(f"Algorithm : {result['algorithm']}")
-print(f"Sorted By : {result['sorted_by']}")
-print(f"Time      : {result['time']:.8f} sec")
-print(f"Memory    : {result['memory']} Bytes")
+# print("\n========== Performance ==========")
+# print(f"Algorithm : {result['algorithm']}")
+# print(f"Sorted By : {result['sorted_by']}")
+# print(f"Time      : {result['time']:.8f} sec")
+# print(f"Memory    : {result['memory']} Bytes")
+
+player = Player(playlist)
+
+print(player.state)
