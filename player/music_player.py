@@ -83,6 +83,14 @@ class Player:
         print("\n⏮ Previous Song")
         print(song)
 
+    def _play_current_song(self, message):
 
+        self.state = "Playing"
 
+        song = self.playlist.current_song()
+
+        print(f"\n{message}")
+        print(song)
+
+    
 
