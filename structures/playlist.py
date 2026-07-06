@@ -2,6 +2,7 @@ from models.node import Node
 from models.song import Song
 
 class Playlist:
+    
     def __init__(self):
 
         self.head = None # * first
@@ -20,6 +21,7 @@ class Playlist:
             self.head.prev = new_node
             self.head = new_node
         self.size += 1
+    
     def add_last(self, song: Song):
         new_node = Node(song)
         if self.head is None:
@@ -107,6 +109,7 @@ class Playlist:
         return self.current.song
     
     def previous_song(self):
+
         if self.current is None:
             return None 
         
@@ -117,3 +120,16 @@ class Playlist:
 
             self.current = self.tail
         return self.current.song
+    
+    def update_tail(self):
+
+        if self.head is None:
+            self.tail = None
+            return
+
+        current = self.head
+
+        while current.next:
+            current = current.next
+
+        self.tail = current
