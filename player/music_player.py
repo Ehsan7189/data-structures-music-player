@@ -4,3 +4,19 @@ class Player:
 
         self.playlist = playlist
         self.state = "Stopped"
+
+    def play(self):
+
+        if self.playlist.head is None:
+            print("Playlist is empty.")
+            return
+
+        if self.state == "Playing":
+            return
+
+        self.state = "Playing"
+
+        song = self.playlist.current_song()
+
+        print("\n▶ Now Playing")
+        print(song)
