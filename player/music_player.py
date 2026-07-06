@@ -120,10 +120,13 @@ class Player:
 
             self.build_shuffle_order()
 
-            print("🔀 Shuffle On")
+            print("\n🔀 Shuffle On")
 
         else:
 
+            self.shuffle_order = None
+            self.shuffle_index = 0
+            
             print("➡ Shuffle Off")
 
     def build_shuffle_order(self):
