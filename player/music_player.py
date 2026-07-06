@@ -80,8 +80,7 @@ class Player:
 
         song = self.playlist.previous_song()
 
-        print("\n⏮ Previous Song")
-        print(song)
+        self._play_current_song("⏮ Previous Song")
 
     def _play_current_song(self, message):
 
