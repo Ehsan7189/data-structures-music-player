@@ -7,7 +7,8 @@ class Player:
         self.playlist = playlist
         self.state = "Stopped"
         self.shuffle_mode = False
-        self.shuffle_order = []
+        self.shuffle_order = None
+        self.shuffle_index = 0
 
     def play(self):
 
