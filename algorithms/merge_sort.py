@@ -60,6 +60,7 @@ class MergeSort(Sorter):
             if self.compare(left, right, key) <= 0:
 
                 tail.next = left
+                self.movements += 1
                 left.prev = tail
 
                 tail = left
@@ -68,6 +69,7 @@ class MergeSort(Sorter):
             else:
 
                 tail.next = right
+                self.movements += 1
                 right.prev = tail
 
                 tail = right
@@ -75,10 +77,12 @@ class MergeSort(Sorter):
 
         if left:
             tail.next = left
+            self.movements += 1
             left.prev = tail
 
         elif right:
             tail.next = right
+            self.movements += 1
             right.prev = tail
 
         head = dummy.next
