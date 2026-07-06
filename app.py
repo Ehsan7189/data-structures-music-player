@@ -33,6 +33,7 @@ playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 player = Player(playlist)
 player.play()
 
-player.pause()
+player.stop()
 
 print(player.state)
+print(player.playlist.current_song())
