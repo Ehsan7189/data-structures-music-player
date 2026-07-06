@@ -13,6 +13,9 @@ class MergeSort(Sorter):
             return
 
         playlist.head = self.merge_sort(playlist.head, key)
+        
+        playlist.update_tail()
+        playlist.current = playlist.head
 
     def get_middle(self, head):
 
