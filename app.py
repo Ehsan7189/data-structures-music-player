@@ -36,17 +36,9 @@ player.play()
 print("\n========== Player Test ==========\n")
 
 player.play()
-
-player.next_song()
-
-player.next_song()
-
+player.next()
+player.next()
+player.previous()
 player.pause()
-
 player.play()
-
-player.next_song()
-
 player.stop()
-
-player.play()
