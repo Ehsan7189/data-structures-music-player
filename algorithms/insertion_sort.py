@@ -22,13 +22,14 @@ class InsertionSort(Sorter):
             while position and self.compare(position, temp, key) > 0:
 
                 position.next.song = position.song
+                self.movements += 1
                 position = position.prev
 
             if position is None:
                 playlist.head.song = temp
             else:
                 position.next.song = temp
-
+                self.movements += 1
 
             self.show_step(
             playlist,
