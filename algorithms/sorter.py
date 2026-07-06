@@ -11,6 +11,8 @@ class Sorter:
         self.algorithm_name = algorithm_name
         self.trace = False
         self.step = 1
+        self.comparisons = 0
+        self.movements = 0
 
     def measure(self, playlist, key):
         start_time = time.perf_counter()
