@@ -69,3 +69,20 @@ class Player:
 
         print("\n⏭ Next Song")
         print(song)
+
+    def prev_song(self):
+
+        if self.playlist.head is None:
+            return
+
+        if self.state == "Stopped":
+            return
+
+        song = self.playlist.previous_song()
+
+        print("\n⏮ Previous Song")
+        print(song)
+
+
+
+
