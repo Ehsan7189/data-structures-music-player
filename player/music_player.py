@@ -4,6 +4,8 @@ class Player:
 
         self.playlist = playlist
         self.state = "Stopped"
+        self.shuffle_mode = False
+        self.shuffle_order = []
 
     def play(self):
 
@@ -106,4 +108,20 @@ class Player:
             return
 
         self._play_current_song("▶ Now Playing")
+
+    def shuffle(self):
+
+        self.shuffle_mode = not self.shuffle_mode
+
+        if self.shuffle_mode:
+
+            self.build_shuffle_order()
+
+            print("🔀 Shuffle On")
+
+        else:
+
+            print("➡ Shuffle Off")
+
+
 
