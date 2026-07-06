@@ -31,5 +31,8 @@ playlist.add_last(Song("music/Linkin Park - Numb.mp3"))
 # print(f"Memory    : {result['memory']} Bytes")
 
 player = Player(playlist)
+player.play()
+
+player.pause()
 
 print(player.state)
