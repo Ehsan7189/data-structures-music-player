@@ -15,12 +15,22 @@ class Sorter:
         self.movements = 0
 
     def measure(self, playlist, key):
+       
+        self.comparisons = 0
+        self.movements = 0
+        self.step = 1
+        
         start_time = time.perf_counter()
+
         tracemalloc.start()
+
         self.sort(playlist, key)
         current, peak = tracemalloc.get_traced_memory()
+
         tracemalloc.stop()
+
         end_time = time.perf_counter()
+
         return {
             "algorithm": self.algorithm_name,
             "time": end_time - start_time,
