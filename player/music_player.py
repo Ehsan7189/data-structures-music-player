@@ -92,5 +92,19 @@ class Player:
         print(f"\n{message}")
         print(song)
 
-    
+    def play(self):
+
+        if self.playlist.head is None:
+            print("Playlist is empty.")
+            return
+
+        if self.state == "Playing":
+            return
+
+        if self.state == "Paused":
+
+            self._play_current_song("▶ Resumed")
+            return
+
+        self._play_current_song("▶ Now Playing")
 
