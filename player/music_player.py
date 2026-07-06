@@ -8,11 +8,24 @@ class Player:
     def play(self):
 
         if self.playlist.head is None:
+
             print("Playlist is empty.")
             return
 
         if self.state == "Playing":
             return
+        
+        song = self.playlist.current_song()
+
+        if self.state == "Paused":
+
+            self.state = "Playing"
+
+            print("\n▶ Resumed")
+            print(song)
+
+            return
+        
 
         self.state = "Playing"
 
