@@ -20,3 +20,12 @@ class Player:
 
         print("\n▶ Now Playing")
         print(song)
+
+    def pause(self):
+
+        if self.state != "Playing":
+            return
+
+        self.state = "Paused"
+
+        print("⏸ Paused")
