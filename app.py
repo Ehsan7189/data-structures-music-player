@@ -4,8 +4,8 @@ from algorithms.merge_sort import MergeSort
 from structures.playlist import Playlist
 from player.music_player import Player
 
-play_list = Playlist()
-player = Player(play_list)
+playlist = Playlist()
+player = Player(playlist)
 
 sorters = {
     "1": BubbleSort,
@@ -70,11 +70,11 @@ def sort_playlist():
     
     key = fields[field]
 
-    result = sorter.measure(play_list, key)
+    result = sorter.measure(playlist, key)
 
     print("\nSorted Successfully!")
 
-    play_list.display()
+    playlist.display()
 
     print("\n===== Performance =====")
     print(f"Algorithm   : {result['algorithm']}")
@@ -97,7 +97,7 @@ while True:
 
     elif choice == "1":
 
-        play_list.display()
+        playlist.display()
     
     elif choice == "2":
 
