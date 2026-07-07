@@ -9,6 +9,7 @@ class Player:
         self.shuffle_mode = False
         self.shuffle_order = None
         self.shuffle_index = 0
+        self.repeat_mode = "off"
 
     def play(self):
 
