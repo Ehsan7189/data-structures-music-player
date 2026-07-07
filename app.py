@@ -17,3 +17,9 @@ def show_menu():
     print("8. Sort Playlist")
     print("9. Show Performance")
     print("0. Exit")
+
+while True:
+
+    show_menu()
+
+    choice = input("Choose : ")
