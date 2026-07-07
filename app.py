@@ -62,4 +62,12 @@ while True:
 
         player.shuffle()
 
-    
+    elif choice == "8":
+
+        print("\n===== Sort Playlist =====")
+        print("1. Bubble Sort")
+        print("2. Insertion Sort")
+        print("3. Merge Sort")
+
+        algorithm = input("Choose Algorithm: ")
+
