@@ -8,6 +8,10 @@ from utils.music_loader import MusicLoader
 playlist = Playlist()
 player = Player(playlist)
 
+path = input("Enter music folder: ")
+count = MusicLoader.load_folder(path, playlist)
+print(f"\n✅ {count} song(s) loaded.")
+
 sorters = {
     "1": BubbleSort,
     "2": InsertionSort,
