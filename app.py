@@ -80,6 +80,13 @@ while True:
             "3": MergeSort
         }
 
+        if algorithm not in sorters:
+
+            print("Invalid Algorithm!")
+
+            continue
+
+        sorter = sorters[algorithm]()
         print("\nSort By")
         print("1. Artist")
         print("2. Title")
