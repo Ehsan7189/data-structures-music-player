@@ -7,6 +7,7 @@ from utils.music_loader import MusicLoader
 
 playlist = Playlist()
 player = Player(playlist)
+last_result = None
 
 path = input("Enter music folder: ")
 count = MusicLoader.load_folder(path, playlist)
