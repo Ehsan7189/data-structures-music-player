@@ -108,3 +108,16 @@ while True:
         else:
             print("Invalid field!")
             continue
+
+        result = sorter.measure(playlist, key)
+
+        print("\nSorted Successfully!")
+
+        playlist.display()
+
+        print("\n===== Performance =====")
+        print(f"Algorithm   : {result['algorithm']}")
+        print(f"Time        : {result['time']:.8f} sec")
+        print(f"Memory      : {result['memory']} Bytes")
+        print(f"Comparisons : {result['comparisons']}")
+        print(f"Movements   : {result['movements']}")
