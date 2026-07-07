@@ -35,6 +35,54 @@ def show_menu():
     print("9. Show Performance")
     print("0. Exit")
 
+def sort_palylist():
+    
+    print("\n===== Sort Playlist =====")
+    print("1. Bubble Sort")
+    print("2. Insertion Sort")
+    print("3. Merge Sort")
+
+    algorithm = input("Choose Algorithm: ")
+
+
+
+    if algorithm not in sorters:
+
+        print("\n❌ Invalid choice.")
+
+        continue
+
+    sorter = sorters[algorithm]()
+    print("\nSort By")
+    print("1. Artist")
+    print("2. Title")
+    print("3. Format")
+
+
+
+    field = input("Choose Field: ")
+
+    if field not in fields:
+
+        print("\n❌ Invalid choice.")
+
+        continue
+    
+    key = fields[field]
+
+    result = sorter.measure(playlist, key)
+
+    print("\nSorted Successfully!")
+
+    playlist.display()
+
+    print("\n===== Performance =====")
+    print(f"Algorithm   : {result['algorithm']}")
+    print(f"Time        : {result['time']:.8f} sec")
+    print(f"Memory      : {result['memory']} Bytes")
+    print(f"Comparisons : {result['comparisons']}")
+    print(f"Movements   : {result['movements']}")
+
 while True:
 
     show_menu()
@@ -80,48 +128,4 @@ while True:
 
     elif choice == "8":
 
-        print("\n===== Sort Playlist =====")
-        print("1. Bubble Sort")
-        print("2. Insertion Sort")
-        print("3. Merge Sort")
-
-        algorithm = input("Choose Algorithm: ")
-
-
-
-        if algorithm not in sorters:
-
-            print("\n❌ Invalid choice.")
-
-            continue
-
-        sorter = sorters[algorithm]()
-        print("\nSort By")
-        print("1. Artist")
-        print("2. Title")
-        print("3. Format")
-
-
-
-        field = input("Choose Field: ")
-
-        if field not in fields:
-
-            print("\n❌ Invalid choice.")
-
-            continue
-        
-        key = fields[field]
-
-        result = sorter.measure(playlist, key)
-
-        print("\nSorted Successfully!")
-
-        playlist.display()
-
-        print("\n===== Performance =====")
-        print(f"Algorithm   : {result['algorithm']}")
-        print(f"Time        : {result['time']:.8f} sec")
-        print(f"Memory      : {result['memory']} Bytes")
-        print(f"Comparisons : {result['comparisons']}")
-        print(f"Movements   : {result['movements']}")
+   
