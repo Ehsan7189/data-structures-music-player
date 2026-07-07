@@ -92,20 +92,20 @@ while True:
         print("2. Title")
         print("3. Format")
 
+
+        fields = {
+            "1": "artist",
+            "2": "title",
+            "3": "format"
+        }
         field = input("Choose Field: ")
 
-        if field == "1":
-            key = "artist"
+        if field not in fields:
 
-        elif field == "2":
-            key = "title"
+            print("Invalid Field!")
 
-        elif field == "3":
-            key = "format"
-
-        else:
-            print("Invalid field!")
             continue
+
 
         result = sorter.measure(playlist, key)
 
