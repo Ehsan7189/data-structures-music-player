@@ -3,6 +3,7 @@ from algorithms.insertion_sort import InsertionSort
 from algorithms.merge_sort import MergeSort
 from structures.playlist import Playlist
 from player.music_player import Player
+from utils.music_loader import MusicLoader
 
 playlist = Playlist()
 player = Player(playlist)
