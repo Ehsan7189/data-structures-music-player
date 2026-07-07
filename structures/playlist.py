@@ -133,3 +133,15 @@ class Playlist:
             current = current.next
 
         self.tail = current
+
+
+    def clear(self):
+
+        self.head = None
+        self.tail = None
+        self.current = None
+
+        self.size = 0
+
+
+
