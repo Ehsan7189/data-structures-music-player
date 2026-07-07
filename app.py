@@ -1,5 +1,4 @@
-
-
+from structures import playlist
 
 
 def show_menu():
@@ -29,3 +28,6 @@ while True:
         print("Goodbye!")
 
         break
+    elif choice == "1":
+
+        playlist.display()
