@@ -97,35 +97,37 @@ while True:
 
     elif choice == "1":
 
-        playlist.display()
+        Playlist.display()
     
     elif choice == "2":
 
-        player.play()
+        Player.play()
     
     elif choice == "3":
 
-        player.pause()
+        Player.pause()
     
     elif choice == "4":
 
-        player.stop()
+        Player.stop()
 
     
     elif choice == "5":
 
-        player.next()
+        Player.next()
 
     
     elif choice == "6":
 
-        player.previous()
+        Player.previous()
 
     
     elif choice == "7":
 
-        player.shuffle()
+        Player.shuffle()
 
     elif choice == "8":
+
+        sort_palylist()
 
    
