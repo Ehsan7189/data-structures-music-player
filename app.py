@@ -71,3 +71,9 @@ while True:
 
         algorithm = input("Choose Algorithm: ")
 
+        print("\nSort By")
+        print("1. Artist")
+        print("2. Title")
+        print("3. Format")
+
+        field = input("Choose Field: ")
