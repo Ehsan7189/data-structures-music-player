@@ -70,8 +70,14 @@ class Player:
         if self.state == "Stopped":
             return
 
+        if self.shuffle_mode:
 
-        self.playlist.next_song()
+            self.shuffle_index = (self.shuffle_index + 1) % len(self.shuffle_order)
+
+            self.playlist.current = self.shuffle_order[self.shuffle_index]
+        else:
+
+            self.playlist.next_song()
 
         self._play_current_song("⏭ Next Song")
 
@@ -82,6 +88,16 @@ class Player:
 
         if self.state == "Stopped":
             return
+        
+        if self.shuffle_mode:
+
+            self.shuffle_index = (self.shuffle_index - 1) % len(self.shuffle_order)
+
+            self.playlist.current = self.shuffle_order[self.shuffle_index]
+
+        else:
+
+            self.playlist.previous_song()
 
         song = self.playlist.previous_song()
 
@@ -120,7 +136,9 @@ class Player:
 
             self.build_shuffle_order()
 
-            print("\n🔀 Shuffle On")
+            self.playlist.current = self.shuffle_order[0]
+
+            self._play_current_song("🔀 Shuffle On")
 
         else:
 
