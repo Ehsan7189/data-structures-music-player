@@ -71,9 +71,25 @@ while True:
 
         algorithm = input("Choose Algorithm: ")
 
+
+        
+
         print("\nSort By")
         print("1. Artist")
         print("2. Title")
         print("3. Format")
 
         field = input("Choose Field: ")
+
+        if field == "1":
+            key = "artist"
+
+        elif field == "2":
+            key = "title"
+
+        elif field == "3":
+            key = "format"
+
+        else:
+            print("Invalid field!")
+            continue
