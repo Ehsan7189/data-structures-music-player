@@ -97,7 +97,22 @@ def sort_playlist():
     print(f"Comparisons : {result['comparisons']}")
     print(f"Movements   : {result['movements']}")
 
+    
+path = input("Enter music folder: ")
+count = MusicLoader.load_folder(path, playlist)
+print(f"\n✅ {count} song(s) loaded.")
+
+
+if count > 0:
+
+    print(f"\n✅ {count} song(s) loaded.")
+
+else:
+
+    print("\n❌ No songs loaded.")
+    
 while True:
+
 
     show_menu()
 
