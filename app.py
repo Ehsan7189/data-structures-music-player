@@ -38,3 +38,28 @@ while True:
     elif choice == "2":
 
         player.play()
+    
+    elif choice == "3":
+
+        player.pause()
+    
+    elif choice == "4":
+
+        player.stop()
+
+    
+    elif choice == "5":
+
+        player.next()
+
+    
+    elif choice == "6":
+
+        player.previous()
+
+    
+    elif choice == "7":
+
+        player.shuffle()
+
+    
