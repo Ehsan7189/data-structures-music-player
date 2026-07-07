@@ -1,9 +1,22 @@
 from algorithms.bubble_sort import BubbleSort
 from algorithms.insertion_sort import InsertionSort
 from algorithms.merge_sort import MergeSort
-from structures import playlist
-from player import music_player
-import player
+from structures.playlist import Playlist
+from player.music_player import Player
+
+play_list = Playlist()
+palyer = Player(play_list)
+
+sorters = {
+    "1": BubbleSort,
+    "2": InsertionSort,
+    "3": MergeSort
+}
+fields = {
+    "1": "artist",
+    "2": "title",
+    "3": "format"
+}
 
 
 def show_menu():
@@ -74,15 +87,11 @@ while True:
 
         algorithm = input("Choose Algorithm: ")
 
-        sorters = {
-            "1": BubbleSort,
-            "2": InsertionSort,
-            "3": MergeSort
-        }
+
 
         if algorithm not in sorters:
 
-            print("Invalid Algorithm!")
+            print("\n❌ Invalid choice.")
 
             continue
 
@@ -93,19 +102,16 @@ while True:
         print("3. Format")
 
 
-        fields = {
-            "1": "artist",
-            "2": "title",
-            "3": "format"
-        }
+
         field = input("Choose Field: ")
 
         if field not in fields:
 
-            print("Invalid Field!")
+            print("\n❌ Invalid choice.")
 
             continue
-
+        
+        key = fields[field]
 
         result = sorter.measure(playlist, key)
 
