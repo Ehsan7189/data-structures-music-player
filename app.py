@@ -72,7 +72,22 @@ while True:
         algorithm = input("Choose Algorithm: ")
 
 
-        
+        if algorithm == "1":
+
+            sorter = BubbleSort()
+
+        elif algorithm == "2":
+
+            sorter = InsertionSort()
+
+        elif algorithm == "3":
+
+            sorter = MergeSort()
+
+        else:
+
+            print("Invalid algorithm!")
+            continue
 
         print("\nSort By")
         print("1. Artist")
