@@ -52,6 +52,10 @@ def show_menu():
 
 def sort_playlist():
     
+
+    global last_result
+
+
     print("\n===== Sort Playlist =====")
     print("1. Bubble Sort")
     print("2. Insertion Sort")
@@ -85,7 +89,7 @@ def sort_playlist():
     
     key = fields[field]
 
-    result = sorter.measure(playlist, key)
+    last_result = sorter.measure(playlist, key)
 
     print("\nSorted Successfully!")
 
@@ -159,6 +163,25 @@ while True:
     elif choice == "8":
 
         sort_playlist()
+
+    elif choice == "9":
+
+        if last_result is None:
+
+            print("\nNo performance data available.")
+
+        else:
+
+            print("\n===== Performance =====")
+            print(f"Algorithm   : {last_result['algorithm']}")
+            print(f"Time        : {last_result['time']:.8f} sec")
+            print(f"Memory      : {last_result['memory']} Bytes")
+            print(f"Comparisons : {last_result['comparisons']}")
+            print(f"Movements   : {last_result['movements']}")
+
+    elif choice == "0":
+
+        break
 
     else:
         print("\n❌ Invalid choice.")
