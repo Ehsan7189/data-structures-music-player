@@ -97,7 +97,7 @@ while True:
 
     elif choice == "1":
 
-        Playlist.display()
+        play_list.display()
     
     elif choice == "2":
 
