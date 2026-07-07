@@ -5,7 +5,7 @@ from structures.playlist import Playlist
 from player.music_player import Player
 
 play_list = Playlist()
-palyer = Player(play_list)
+player = Player(play_list)
 
 sorters = {
     "1": BubbleSort,
@@ -101,30 +101,30 @@ while True:
     
     elif choice == "2":
 
-        Player.play()
+        player.play()
     
     elif choice == "3":
 
-        Player.pause()
+        player.pause()
     
     elif choice == "4":
 
-        Player.stop()
+        player.stop()
 
     
     elif choice == "5":
 
-        Player.next()
+        player.next()
 
     
     elif choice == "6":
 
-        Player.previous()
+        player.previous()
 
     
     elif choice == "7":
 
-        Player.shuffle()
+        player.shuffle()
 
     elif choice == "8":
 
