@@ -110,7 +110,7 @@ if count > 0:
 else:
 
     print("\n❌ No songs loaded.")
-    
+
 while True:
 
 
@@ -159,4 +159,5 @@ while True:
 
         sort_playlist()
 
-   
+    else:
+        print("\n❌ Invalid choice.")
