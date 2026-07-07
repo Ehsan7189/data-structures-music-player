@@ -35,7 +35,7 @@ def show_menu():
     print("9. Show Performance")
     print("0. Exit")
 
-def sort_palylist():
+def sort_playlist():
     
     print("\n===== Sort Playlist =====")
     print("1. Bubble Sort")
@@ -50,7 +50,7 @@ def sort_palylist():
 
         print("\n❌ Invalid choice.")
 
-        continue
+        return
 
     sorter = sorters[algorithm]()
     print("\nSort By")
@@ -66,15 +66,15 @@ def sort_palylist():
 
         print("\n❌ Invalid choice.")
 
-        continue
+        return
     
     key = fields[field]
 
-    result = sorter.measure(playlist, key)
+    result = sorter.measure(play_list, key)
 
     print("\nSorted Successfully!")
 
-    playlist.display()
+    play_list.display()
 
     print("\n===== Performance =====")
     print(f"Algorithm   : {result['algorithm']}")
@@ -128,6 +128,6 @@ while True:
 
     elif choice == "8":
 
-        sort_palylist()
+        sort_playlist()
 
    
