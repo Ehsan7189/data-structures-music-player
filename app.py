@@ -1,3 +1,6 @@
+from algorithms.bubble_sort import BubbleSort
+from algorithms.insertion_sort import InsertionSort
+from algorithms.merge_sort import MergeSort
 from structures import playlist
 from player import music_player
 import player
@@ -71,23 +74,11 @@ while True:
 
         algorithm = input("Choose Algorithm: ")
 
-
-        if algorithm == "1":
-
-            sorter = BubbleSort()
-
-        elif algorithm == "2":
-
-            sorter = InsertionSort()
-
-        elif algorithm == "3":
-
-            sorter = MergeSort()
-
-        else:
-
-            print("Invalid algorithm!")
-            continue
+        sorters = {
+            "1": BubbleSort,
+            "2": InsertionSort,
+            "3": MergeSort
+        }
 
         print("\nSort By")
         print("1. Artist")
