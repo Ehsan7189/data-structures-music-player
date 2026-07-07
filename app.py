@@ -9,6 +9,8 @@ playlist = Playlist()
 player = Player(playlist)
 last_result = None
 
+playlist.clear()
+
 path = input("Enter music folder: ")
 count = MusicLoader.load_folder(path, playlist)
 print(f"\n✅ {count} song(s) loaded.")
@@ -96,11 +98,11 @@ def sort_playlist():
     playlist.display()
 
     print("\n===== Performance =====")
-    print(f"Algorithm   : {result['algorithm']}")
-    print(f"Time        : {result['time']:.8f} sec")
-    print(f"Memory      : {result['memory']} Bytes")
-    print(f"Comparisons : {result['comparisons']}")
-    print(f"Movements   : {result['movements']}")
+    print(f"Algorithm   : {last_result['algorithm']}")
+    print(f"Time        : {last_result['time']:.8f} sec")
+    print(f"Memory      : {last_result['memory']} Bytes")
+    print(f"Comparisons : {last_result['comparisons']}")
+    print(f"Movements   : {last_result['movements']}")
 
     
 path = input("Enter music folder: ")

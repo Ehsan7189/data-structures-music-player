@@ -10,7 +10,6 @@ class MusicLoader:
     @staticmethod
     def load_folder(path, playlist):
 
-        playlist.clear()
 
         if not os.path.isdir(path):
 
