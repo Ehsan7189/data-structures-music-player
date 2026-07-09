@@ -1,7 +1,6 @@
 from algorithms.sorter import Sorter
 from models.node import Node
 
-
 class MergeSort(Sorter):
 
     def __init__(self):
@@ -13,7 +12,6 @@ class MergeSort(Sorter):
             return
 
         playlist.head = self.merge_sort(playlist.head, key)
-        
         playlist.update_tail()
         playlist.current = playlist.head
 
@@ -23,34 +21,29 @@ class MergeSort(Sorter):
         fast = head
 
         while fast.next and fast.next.next:
-
             slow = slow.next
             fast = fast.next.next
 
         return slow
-    
+
     def merge_sort(self, head, key):
 
         if head is None or head.next is None:
             return head
 
         middle = self.get_middle(head)
-
         right = middle.next
         middle.next = None
 
         if right:
             right.prev = None
 
-        left = head
-
-        left = self.merge_sort(left, key)
+        left = self.merge_sort(head, key)
         right = self.merge_sort(right, key)
 
         return self.merge(left, right, key)
-    
-    def merge(self, left, right, key):
 
+    def merge(self, left, right, key):
 
         dummy = Node(None)
         tail = dummy
@@ -58,35 +51,27 @@ class MergeSort(Sorter):
         while left and right:
 
             if self.compare(left, right, key) <= 0:
-
                 tail.next = left
-                self.movements += 1
                 left.prev = tail
-
-                tail = left
                 left = left.next
-
             else:
-
                 tail.next = right
-                self.movements += 1
                 right.prev = tail
-
-                tail = right
                 right = right.next
 
-        if left:
-            tail.next = left
+            tail = tail.next
             self.movements += 1
-            left.prev = tail
 
-        elif right:
-            tail.next = right
+        remaining = left if left else right
+
+        while remaining:
+            tail.next = remaining
+            remaining.prev = tail
+            tail = remaining
+            remaining = remaining.next
             self.movements += 1
-            right.prev = tail
 
         head = dummy.next
-
         if head:
             head.prev = None
 

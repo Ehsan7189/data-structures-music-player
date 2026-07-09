@@ -1,166 +1,33 @@
-import random
+import os
+from models.song import Song
 
-class Player:
+class MusicLoader:
 
-    def __init__(self, playlist):
+    SUPPORTED_FORMATS = (".mp3", ".wav", ".flac", ".aac", ".ogg")
 
-        self.playlist = playlist
-        self.state = "Stopped"
-        self.shuffle_mode = False
-        self.shuffle_order = None
-        self.shuffle_index = 0
-        self.repeat_mode = "off"
+    @staticmethod
+    def load_folder(path, playlist):
 
-    def play(self):
+        if not os.path.isdir(path):
+            print("\n❌ Folder not found.")
+            return 0
 
-        if self.playlist.head is None:
+        count = 0
 
-            print("Playlist is empty.")
-            return
+        for file_name in os.listdir(path):
 
-        if self.state == "Playing":
-            return
-        
-        song = self.playlist.current_song()
+            full_path = os.path.join(path, file_name)
 
-        if self.state == "Paused":
+            if not os.path.isfile(full_path):
+                continue
 
-            self.state = "Playing"
+            _, extension = os.path.splitext(file_name)
 
-            print("\n▶ Resumed")
-            print(song)
+            if extension.lower() not in MusicLoader.SUPPORTED_FORMATS:
+                continue
 
-            return
-        
+            song = Song(full_path)
+            playlist.append(song)
+            count += 1
 
-        self.state = "Playing"
-
-        song = self.playlist.current_song()
-
-        print("\n▶ Now Playing")
-        print(song)
-
-    def pause(self):
-
-        if self.state != "Playing":
-            return
-
-        self.state = "Paused"
-
-        print("⏸ Paused")
-
-    def stop(self):
-
-        if self.playlist.head is None:
-            return
-
-        if self.state == "Stopped":
-            return
-
-        self.state = "Stopped"
-
-        self.playlist.current = self.playlist.head
-
-        print("\n⏹ Stopped")
-
-    def next(self):
-
-        if self.playlist.head is None:
-            return
-
-        if self.state == "Stopped":
-            return
-
-        if self.shuffle_mode:
-
-            self.shuffle_index = (self.shuffle_index + 1) % len(self.shuffle_order)
-
-            self.playlist.current = self.shuffle_order[self.shuffle_index]
-        else:
-
-            self.playlist.next_song()
-
-        self._play_current_song("⏭ Next Song")
-
-    def previous(self):
-
-        if self.playlist.head is None:
-            return
-
-        if self.state == "Stopped":
-            return
-        
-        if self.shuffle_mode:
-
-            self.shuffle_index = (self.shuffle_index - 1) % len(self.shuffle_order)
-
-            self.playlist.current = self.shuffle_order[self.shuffle_index]
-
-        else:
-
-            self.playlist.previous_song()
-
-        song = self.playlist.previous_song()
-
-        self._play_current_song("⏮ Previous Song")
-
-    def _play_current_song(self, message):
-
-        self.state = "Playing"
-
-        song = self.playlist.current_song()
-
-        print(f"\n{message}")
-        print(song)
-
-    def play(self):
-
-        if self.playlist.head is None:
-            print("Playlist is empty.")
-            return
-
-        if self.state == "Playing":
-            return
-
-        if self.state == "Paused":
-
-            self._play_current_song("▶ Resumed")
-            return
-
-        self._play_current_song("▶ Now Playing")
-
-    def shuffle(self):
-
-        self.shuffle_mode = not self.shuffle_mode
-
-        if self.shuffle_mode:
-
-            self.build_shuffle_order()
-
-            self.playlist.current = self.shuffle_order[0]
-
-            self._play_current_song("🔀 Shuffle On")
-
-        else:
-
-            self.shuffle_order = None
-            self.shuffle_index = 0
-            
-            print("➡ Shuffle Off")
-
-    def build_shuffle_order(self):
-
-        self.shuffle_order = []
-
-        current = self.playlist.head
-
-        while current is not None:
-
-            self.shuffle_order.append(current)
-
-            current = current.next
-
-        random.shuffle(self.shuffle_order)
-
-        self.shuffle_index = 0
-
+        return count

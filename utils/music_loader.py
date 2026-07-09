@@ -1,7 +1,5 @@
 import os
-
 from models.song import Song
-
 
 class MusicLoader:
 
@@ -10,9 +8,7 @@ class MusicLoader:
     @staticmethod
     def load_folder(path, playlist):
 
-
         if not os.path.isdir(path):
-
             print("\n❌ Folder not found.")
             return 0
 
@@ -25,28 +21,13 @@ class MusicLoader:
             if not os.path.isfile(full_path):
                 continue
 
-            title, extension = os.path.splitext(file_name)
+            _, extension = os.path.splitext(file_name)
 
             if extension.lower() not in MusicLoader.SUPPORTED_FORMATS:
                 continue
 
-            if " - " in title:
-
-                artist, song_title = title.split(" - ", 1)
-
-            else:
-
-                artist = "Unknown Artist"
-                song_title = title
-
-            song = Song(
-                artist=artist.strip(),
-                title=song_title.strip(),
-                format=extension.lower()
-            )
-
+            song = Song(full_path)
             playlist.append(song)
-
             count += 1
 
         return count
