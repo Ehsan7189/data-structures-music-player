@@ -157,12 +157,18 @@ class Player:
             seconds = 0
         elif seconds > song.duration:
             seconds = song.duration
-        pygame.mixer.music.stop()
         try:
-            pygame.mixer.music.load(song.path)
-            pygame.mixer.music.play(start=seconds * 1000)
+            pygame.mixer.music.set_pos(seconds)
             self.state = "Playing"
             print(f"Seeked to {self._format_time(seconds)}")
         except Exception as e:
-            print(f"❌ Error seeking: {e}")
-            self.state = "Stopped"
+            print(f"set_pos failed: {e}, trying reload...")
+            try:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load(song.path)
+                pygame.mixer.music.play(start=seconds * 1000)
+                self.state = "Playing"
+                print(f"Seeked to {self._format_time(seconds)}")
+            except Exception as e2:
+                print(f"❌ Error seeking: {e2}")
+                self.state = "Stopped"
