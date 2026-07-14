@@ -4,6 +4,7 @@ from algorithms.merge_sort import MergeSort
 from structures.playlist import Playlist
 from player.music_player import Player
 from utils.music_loader import MusicLoader
+import os
 import pygame
 
 playlist = Playlist()
@@ -60,6 +61,7 @@ def show_menu():
     print("7. Toggle Shuffle")
     print("8. Sort Playlist")
     print("9. Show Performance")
+    print("10. Rename Files")
     print("0. Exit")
 
 
@@ -124,13 +126,87 @@ def sort_playlist():
 
     if player.shuffle_mode:
         player._build_shuffle_order()
-     
         try:
             player.shuffle_index = player.shuffle_order.index(playlist.head)
         except ValueError:
             player.shuffle_index = 0
         print("🔀 Shuffle order re-synchronized after sorting.")
 
+
+def rename_files():
+
+    if playlist.head is None:
+        print("\n❌ Playlist is empty.")
+        return
+
+    if player.state != "Stopped":
+        pygame.mixer.music.stop()
+        player.state = "Stopped"
+        print("\n⏹ Player stopped before renaming.")
+
+    print("\n===== Rename Files =====")
+    print("This will rename all files in the playlist to:")
+    print("  Artist - Title.extension")
+    print("Files with 'Unknown' artist will be renamed to Title.extension")
+    confirm = input("Proceed? (y/n): ").lower()
+
+    if confirm != "y":
+        print("❌ Rename cancelled.")
+        return
+
+    renamed = 0
+    skipped = 0
+    errors = 0
+
+    current = playlist.head
+    while current:
+        song = current.song
+
+        if song.artist.lower() == "unknown":
+            new_name = f"{song.title}{song.extension}"
+        else:
+            new_name = f"{song.artist} - {song.title}{song.extension}"
+
+        current_filename = os.path.basename(song.path)
+
+        if current_filename == new_name:
+            current = current.next
+            skipped += 1
+            continue
+
+        new_path = os.path.join(os.path.dirname(song.path), new_name)
+
+        if os.path.exists(new_path):
+            base_name = os.path.splitext(new_name)[0]
+            ext = os.path.splitext(new_name)[1]
+            counter = 1
+            while True:
+                test_name = f"{base_name}_{counter}{ext}"
+                test_path = os.path.join(os.path.dirname(song.path), test_name)
+                if not os.path.exists(test_path):
+                    new_path = test_path
+                    break
+                counter += 1
+
+        try:
+            os.rename(song.path, new_path)
+            song.path = new_path
+            song.filename = os.path.basename(new_path)
+            renamed += 1
+            print(f"✅ Renamed: {current_filename} → {os.path.basename(new_path)}")
+        except Exception as e:
+            print(f"❌ Error renaming {current_filename}: {e}")
+            errors += 1
+
+        current = current.next
+
+    print("\n===== Rename Summary =====")
+    print(f"Renamed: {renamed}")
+    print(f"Skipped (already correct): {skipped}")
+    print(f"Errors: {errors}")
+
+    if renamed > 0:
+        print("✅ Playlist paths updated.")
 
 
 while True:
@@ -139,9 +215,9 @@ while True:
 
     choice = input("\nChoose: ")
 
-
     if choice == "0":
-        pygame.mixer.quit()  
+
+        pygame.mixer.quit()
         print("\n👋 Goodbye!")
         break
 
@@ -180,6 +256,10 @@ while True:
     elif choice == "9":
 
         show_performance()
+
+    elif choice == "10":
+
+        rename_files()
 
     else:
 
