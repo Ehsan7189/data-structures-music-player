@@ -63,9 +63,7 @@ def show_menu():
     print("9. Show Performance")
     print("10. Edit & Rename a Song")
     print("11. Show Progress")
-    print("12. Seek (Go to time)")
     print("0. Exit")
-
 
 
 def show_performance():
@@ -270,15 +268,9 @@ while True:
         rename_files()
 
     elif choice == "11":
-        player.show_progress()
-        print()  
 
-    elif choice == "12":
-        try:
-            sec = int(input("Enter seconds: "))
-            player.seek(sec)
-        except ValueError:
-            print("Invalid input.")
+        player.show_progress()
+        print()
 
     else:
 
