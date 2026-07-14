@@ -8,7 +8,7 @@ class Player:
         self.shuffle_mode = False
         self.shuffle_order = []
         self.shuffle_index = 0
-        pygame.mixer.init()  # مقداردهی اولیه
+        pygame.mixer.init()  
 
     def _play_current_song(self, message):
         song = self.playlist.current_song()
@@ -20,7 +20,6 @@ class Player:
         print(f"\n{message}")
         print(song)
         
-        # بارگذاری و پخش فایل
         try:
             pygame.mixer.music.load(song.path)
             pygame.mixer.music.play()
@@ -33,7 +32,6 @@ class Player:
             print("Playlist is empty.")
             return
 
-        # اگر در حالت Playing هستیم اما موسیقی تمام شده، برو به آهنگ بعدی
         if self.state == "Playing" and not pygame.mixer.music.get_busy():
             self.next()
             return
@@ -42,13 +40,13 @@ class Player:
             return
 
         if self.state == "Paused":
-            # رزومه
+          
             pygame.mixer.music.unpause()
             self.state = "Playing"
             print("▶ Resumed")
             return
 
-        # Stopped یا هیچکدام
+        
         self._play_current_song("▶ Now Playing")
 
     def pause(self):
@@ -78,7 +76,7 @@ class Player:
         if self.state == "Stopped":
             return
         
-        pygame.mixer.music.stop() # توقف آهنگ قبلی
+        pygame.mixer.music.stop() 
 
         if self.shuffle_mode:
             if not self.shuffle_order:
@@ -94,7 +92,7 @@ class Player:
         if self.state == "Stopped":
             return
 
-        pygame.mixer.music.stop() # توقف آهنگ قبلی
+        pygame.mixer.music.stop() 
 
         if self.shuffle_mode:
             if not self.shuffle_order:
@@ -114,10 +112,12 @@ class Player:
         self.shuffle_mode = not self.shuffle_mode
 
         if self.shuffle_mode:
+
             self._build_shuffle_order()
             self.playlist.current = self.shuffle_order[0]
-            # اگر در حال پخش بودیم، آهنگ جدید را پخش کن
+
             if self.state == "Playing" or self.state == "Paused":
+
                 self._play_current_song("🔀 Shuffle On")
             else:
                 print("🔀 Shuffle On")
