@@ -61,7 +61,7 @@ def show_menu():
     print("7. Toggle Shuffle")
     print("8. Sort Playlist")
     print("9. Show Performance")
-    print("10. Rename Files")
+    print("10. Rename Files (Edit & Rename)")
     print("0. Exit")
 
 
@@ -145,6 +145,93 @@ def rename_files():
         print("\n⏹ Player stopped before renaming.")
 
     print("\n===== Rename Files =====")
+    print("1. Rename a specific song")
+    print("2. Rename all songs at once")
+    choice = input("Choose option: ")
+
+    if choice == "1":
+        rename_single_song()
+    elif choice == "2":
+        rename_all_songs()
+    else:
+        print("❌ Invalid choice.")
+
+
+def rename_single_song():
+
+    print("\n===== Select a song =====\n")
+    index = 1
+    current = playlist.head
+    song_list = []
+    while current:
+        song = current.song
+        print(f"{index}. {song.artist} - {song.title} ({song.extension})")
+        song_list.append(current)
+        current = current.next
+        index += 1
+
+    try:
+        choice = int(input("\nEnter song number: "))
+        if choice < 1 or choice > len(song_list):
+            print("❌ Invalid number.")
+            return
+    except ValueError:
+        print("❌ Invalid input.")
+        return
+
+    selected_node = song_list[choice - 1]
+    song = selected_node.song
+
+    print(f"\nCurrent Artist: {song.artist}")
+    print(f"Current Title : {song.title}")
+
+    new_artist = input("New Artist (press Enter to keep current): ").strip()
+    new_title = input("New Title (press Enter to keep current): ").strip()
+
+    if new_artist:
+        song.artist = new_artist
+    if new_title:
+        song.title = new_title
+
+    print(f"\n✅ Info updated: {song.artist} - {song.title}")
+
+    if song.artist.lower() == "unknown":
+        new_name = f"{song.title}{song.extension}"
+    else:
+        new_name = f"{song.artist} - {song.title}{song.extension}"
+
+    current_filename = os.path.basename(song.path)
+
+    if current_filename == new_name:
+        print("✅ Filename already correct. No change needed.")
+        return
+
+    new_path = os.path.join(os.path.dirname(song.path), new_name)
+
+    if os.path.exists(new_path):
+        base_name = os.path.splitext(new_name)[0]
+        ext = os.path.splitext(new_name)[1]
+        counter = 1
+        while True:
+            test_name = f"{base_name}_{counter}{ext}"
+            test_path = os.path.join(os.path.dirname(song.path), test_name)
+            if not os.path.exists(test_path):
+                new_path = test_path
+                break
+            counter += 1
+
+    try:
+        os.rename(song.path, new_path)
+        song.path = new_path
+        song.filename = os.path.basename(new_path)
+        print(f"✅ Renamed: {current_filename} → {os.path.basename(new_path)}")
+    except Exception as e:
+        print(f"❌ Error renaming: {e}")
+
+
+def rename_all_songs():
+
+    print("\n===== Rename All Songs =====")
     print("This will rename all files in the playlist to:")
     print("  Artist - Title.extension")
     print("Files with 'Unknown' artist will be renamed to Title.extension")
