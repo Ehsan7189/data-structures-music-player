@@ -13,7 +13,9 @@ class MergeSort(Sorter):
 
         playlist.head = self.merge_sort(playlist.head, key)
         playlist.update_tail()
-        playlist.current = playlist.head
+        # ===== اصلاح: حذف تنظیم current =====
+        # playlist.current = playlist.head   # دیگر اینجا تنظیم نمی‌شود
+        # ===== پایان اصلاح =====
 
     def get_middle(self, head):
 
