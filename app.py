@@ -4,6 +4,7 @@ from algorithms.merge_sort import MergeSort
 from structures.playlist import Playlist
 from player.music_player import Player
 from utils.music_loader import MusicLoader
+import pygame
 
 playlist = Playlist()
 player = Player(playlist)
@@ -22,13 +23,11 @@ while True:
 
         print(f"\n✅ {count} song(s) loaded.")
 
-        # ===== اصلاح: پاک‌سازی وضعیت شافل بعد از لود جدید =====
         if player.shuffle_mode:
             player.shuffle_mode = False
             player.shuffle_order = []
             player.shuffle_index = 0
             print("🔀 Shuffle disabled due to playlist reload.")
-        # ===== پایان اصلاح =====
 
         break
 
@@ -117,24 +116,21 @@ def sort_playlist():
 
     print("\n✅ Playlist Sorted Successfully!\n")
 
-    # ===== اصلاح: یکنواخت کردن تنظیم current به head =====
     playlist.current = playlist.head
-    # ===== پایان اصلاح =====
 
     playlist.display()
 
     show_performance()
 
-    # ===== اصلاح: بازسازی shuffle_order اگر شافل فعال است =====
     if player.shuffle_mode:
         player._build_shuffle_order()
-        # اگر current قبلاً روی head تنظیم شده، باید shuffle_index را نیز هماهنگ کنیم
+     
         try:
             player.shuffle_index = player.shuffle_order.index(playlist.head)
         except ValueError:
             player.shuffle_index = 0
         print("🔀 Shuffle order re-synchronized after sorting.")
-    # ===== پایان اصلاح =====
+
 
 
 while True:
@@ -143,8 +139,9 @@ while True:
 
     choice = input("\nChoose: ")
 
-    if choice == "0":
 
+    if choice == "0":
+        pygame.mixer.quit()  
         print("\n👋 Goodbye!")
         break
 
