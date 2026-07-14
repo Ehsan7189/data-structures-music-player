@@ -158,6 +158,6 @@ class Player:
         elif seconds > song.duration:
             seconds = song.duration
         pygame.mixer.music.stop()
-        pygame.mixer.music.play(start=seconds)
+        pygame.mixer.music.play(start=seconds * 1000)
         self.state = "Playing"
         print(f"Seeked to {self._format_time(seconds)}")
