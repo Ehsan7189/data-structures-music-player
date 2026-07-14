@@ -21,6 +21,15 @@ while True:
     if count > 0:
 
         print(f"\n✅ {count} song(s) loaded.")
+
+        # ===== اصلاح: پاک‌سازی وضعیت شافل بعد از لود جدید =====
+        if player.shuffle_mode:
+            player.shuffle_mode = False
+            player.shuffle_order = []
+            player.shuffle_index = 0
+            print("🔀 Shuffle disabled due to playlist reload.")
+        # ===== پایان اصلاح =====
+
         break
 
     print("\n❌ Folder not found or no supported music files.")
@@ -108,9 +117,24 @@ def sort_playlist():
 
     print("\n✅ Playlist Sorted Successfully!\n")
 
+    # ===== اصلاح: یکنواخت کردن تنظیم current به head =====
+    playlist.current = playlist.head
+    # ===== پایان اصلاح =====
+
     playlist.display()
 
     show_performance()
+
+    # ===== اصلاح: بازسازی shuffle_order اگر شافل فعال است =====
+    if player.shuffle_mode:
+        player._build_shuffle_order()
+        # اگر current قبلاً روی head تنظیم شده، باید shuffle_index را نیز هماهنگ کنیم
+        try:
+            player.shuffle_index = player.shuffle_order.index(playlist.head)
+        except ValueError:
+            player.shuffle_index = 0
+        print("🔀 Shuffle order re-synchronized after sorting.")
+    # ===== پایان اصلاح =====
 
 
 while True:
