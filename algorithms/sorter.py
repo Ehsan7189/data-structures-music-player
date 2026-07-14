@@ -1,12 +1,11 @@
 import time
 import tracemalloc
+from models.node import Node   # اضافه کردن import
 
 
 class Sorter:
 
-    
-
-    def __init__(self,algorithm_name):
+    def __init__(self, algorithm_name):
 
         self.algorithm_name = algorithm_name
         self.trace = False
@@ -15,11 +14,11 @@ class Sorter:
         self.movements = 0
 
     def measure(self, playlist, key):
-       
+
         self.comparisons = 0
         self.movements = 0
         self.step = 1
-        
+
         start_time = time.perf_counter()
 
         tracemalloc.start()
@@ -42,10 +41,12 @@ class Sorter:
 
     def get_value(self, item, key):
 
-        if hasattr(item, "song"):
+        # ===== اصلاح: استفاده از isinstance =====
+        if isinstance(item, Node):
             value = getattr(item.song, key)
         else:
             value = getattr(item, key)
+        # ===== پایان اصلاح =====
 
         return value.lower()
 
@@ -56,17 +57,16 @@ class Sorter:
         left = self.get_value(node1, key)
         right = self.get_value(node2, key)
 
-        
         if left > right:
             return 1
         elif left < right:
             return -1
         else:
             return 0
-    
+
     def swap(self, node1, node2):
 
-        node1.song, node2.song = node2.song, node1.song    
+        node1.song, node2.song = node2.song, node1.song
         self.movements += 1
 
     def show_step(self, playlist, message):
