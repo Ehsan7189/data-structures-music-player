@@ -1,4 +1,5 @@
 import os
+from mutagen import File
 
 class Song:
 
@@ -17,6 +18,17 @@ class Song:
         else:
             self.artist = "Unknown"
             self.title = file_name.strip()
+
+        self.duration = self._get_duration()
+
+    def _get_duration(self):
+        try:
+            audio = File(self.path)
+            if audio is not None and hasattr(audio.info, 'length'):
+                return int(audio.info.length)
+        except Exception:
+            pass
+        return 0
 
     def __str__(self):
         return (
