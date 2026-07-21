@@ -63,6 +63,7 @@ def show_menu():
     print("9. Show Performance")
     print("10. Edit & Rename a Song")
     print("11. Show Progress")
+    print("12. Search Song by Number")
     print("0. Exit")
 
 
@@ -215,6 +216,46 @@ def rename_files():
         print(f"❌ Error renaming: {e}")
 
 
+def search_by_number():
+
+    if playlist.head is None:
+        print("\n❌ Playlist is empty.")
+        return
+
+    print("\n===== Search Song by Number =====\n")
+    index = 1
+    current = playlist.head
+    song_list = []
+    while current:
+        song = current.song
+        print(f"{index}. {song.artist} - {song.title} ({song.extension})")
+        song_list.append(current)
+        current = current.next
+        index += 1
+
+    try:
+        choice = int(input("\nEnter song number: "))
+        if choice < 1 or choice > len(song_list):
+            print("❌ Invalid number.")
+            return
+    except ValueError:
+        print("❌ Invalid input.")
+        return
+
+    selected_node = song_list[choice - 1]
+    song = selected_node.song
+
+    print("\n===== Song Found =====")
+    print(song)
+    if song.duration > 0:
+        print(f"Duration : {player._format_time(song.duration)}")
+
+    action = input("\nPlay this song? (y/n): ").lower()
+    if action == "y":
+        playlist.current = selected_node
+        player._play_current_song("▶ Now Playing")
+
+
 while True:
 
     show_menu()
@@ -271,6 +312,10 @@ while True:
 
         player.show_progress()
         print()
+
+    elif choice == "12":
+
+        search_by_number()
 
     else:
 

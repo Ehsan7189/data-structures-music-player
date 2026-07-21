@@ -36,3 +36,7 @@ class Song:
             f"Title  : {self.title}\n"
             f"Format : {self.extension}"
         )
+    
+
+# song1 = Song("Pink Floyd - Wish You Were Here.mp3")
+# print(song1)

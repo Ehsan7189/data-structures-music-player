@@ -1,6 +1,6 @@
 import time
 import tracemalloc
-from models.node import Node   # اضافه کردن import
+from models.node import Node  
 
 
 class Sorter:
@@ -41,12 +41,12 @@ class Sorter:
 
     def get_value(self, item, key):
 
-        # ===== اصلاح: استفاده از isinstance =====
+      
         if isinstance(item, Node):
             value = getattr(item.song, key)
         else:
             value = getattr(item, key)
-        # ===== پایان اصلاح =====
+       
 
         return value.lower()
 

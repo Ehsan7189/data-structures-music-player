@@ -133,42 +133,17 @@ class Player:
         if total == 0:
             print("Duration unknown.")
             return
+        song = self.playlist.current_song()
+        if song:
+            print(f"\nNow Playing: {song.artist} - {song.title}")
         bar_length = 20
         filled = int((current / total) * bar_length)
         if filled >= bar_length:
             filled = bar_length - 1
         bar = "[" + "=" * filled + ">" + " " * (bar_length - filled - 1) + "]"
-        print(f"\r{bar} {self._format_time(current)} / {self._format_time(total)}")
+        print(f"{bar} {self._format_time(current)} / {self._format_time(total)}")
 
     def _format_time(self, seconds):
         m = seconds // 60
         s = seconds % 60
         return f"{m:02d}:{s:02d}"
-
-    def seek(self, seconds):
-        if self.state != "Playing":
-            print("Not playing.")
-            return
-        song = self.playlist.current_song()
-        if song.duration == 0:
-            print("Cannot seek: duration unknown.")
-            return
-        if seconds < 0:
-            seconds = 0
-        elif seconds > song.duration:
-            seconds = song.duration
-        try:
-            pygame.mixer.music.set_pos(seconds)
-            self.state = "Playing"
-            print(f"Seeked to {self._format_time(seconds)}")
-        except Exception as e:
-            print(f"set_pos failed: {e}, trying reload...")
-            try:
-                pygame.mixer.music.stop()
-                pygame.mixer.music.load(song.path)
-                pygame.mixer.music.play(start=seconds * 1000)
-                self.state = "Playing"
-                print(f"Seeked to {self._format_time(seconds)}")
-            except Exception as e2:
-                print(f"❌ Error seeking: {e2}")
-                self.state = "Stopped"
